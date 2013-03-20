@@ -47,7 +47,7 @@ def get_bounds(dt, interval):
         begin = datetime.datetime(dt.year, 1, 1, tzinfo=dt.tzinfo)
         end = datetime.datetime(dt.year+1, 1, 1, tzinfo=dt.tzinfo)
     else:
-        raise InvalidInterval('Inverval not supported.')
+        raise InvalidInterval('Interval (%s) not supported.' % interval)
     end = end - relativedelta(microseconds=1)
     return begin, end
 
@@ -79,10 +79,10 @@ def get_interval_sql(date_field, interval, engine):
             'hours': "strftime('%%Y-%%m-%%d %%H:00', `" + date_field + "`)",
             'days': "strftime('%%Y-%%m-%%d', `" + date_field + "`)",
             'weeks':  "strftime('%%Y-%%W', `" + date_field + "`)",
-            'months': "strftime('%%Y-%%m-01', `" + date_field + "`)",          
-            'years': "strftime('%%Y-01-01', `" + date_field + "`)",                     
+            'months': "strftime('%%Y-%%m-01', `" + date_field + "`)",
+            'years': "strftime('%%Y-01-01', `" + date_field + "`)",
         },
-        
+
     }
 
     try:
